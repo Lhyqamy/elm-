@@ -57,7 +57,7 @@
 			h1{
 		     position: absolute;
 			 top: 25%;
-			 left: 42%;
+			 left: 40%;
 			
 		color: white;
 	}
@@ -78,7 +78,7 @@
     height: 260px;
     position: absolute;
     top: 50%;
-    left: 48%;
+    left: 43%;
     margin-top: -105px;
     margin-left: -160px;
     padding: 25px;

@@ -5,7 +5,7 @@
     :data="tableData"
     style="width: 100%">
     <el-table-column
-      label="店铺名称"
+      label="食品名称"
       width="320">
       <template slot-scope="scope">
         <i class="el-icon-arrow-right"></i>
@@ -13,7 +13,7 @@
       </template>
     </el-table-column>
     <el-table-column
-      label="店铺地址"
+      label="食品介绍"
       width="320">
       <template slot-scope="scope">
         <el-popover trigger="hover" placement="top">
@@ -24,7 +24,7 @@
       </template>
     </el-table-column>
 	 <el-table-column
-      label="店铺介绍"
+      label="评分"
       width="320">
       <template slot-scope="scope">
         <el-popover trigger="hover" placement="top">
@@ -39,9 +39,6 @@
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-		  <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">添加商品</el-button>
         <el-button
           size="mini"
           type="danger"

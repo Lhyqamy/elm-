@@ -31,13 +31,13 @@
 	  <router-link tag="div":to="{name:'natureofcode',params:{headername:food}}">
           <el-menu-item index="1-2">商家列表</el-menu-item>
 		  	</router-link>
-			<router-link tag="div"  to="/paging">
+			<router-link tag="div"  :to="{name:'foods',params:{headername:shipin}}">
           <el-menu-item index="1-3">食品列表</el-menu-item>
 		  </router-link>
-		  <router-link tag="div"  to="/paging">
+		  <router-link tag="div"  :to="{name:'orderID',params:{headername:orderID}}">
           <el-menu-item index="1-4">订单列表</el-menu-item>
 		  </router-link>
-		  <router-link tag="div"  to="/paging">
+		  <router-link tag="div" :to="{name:'listing',params:{headername:listing}}">
           <el-menu-item index="1-5">管理员列表</el-menu-item>
 		  </router-link>
 
@@ -127,7 +127,10 @@
         
       return {
         list:"首页/数据管理/用户列表 ",
-		food:"首页/数据管理/食品列表"
+		food:"首页/数据管理/商家列表",
+		shipin:"首页/数据管理/食品列表",
+		orderID:"首页/数据管理/订单列表",
+		listing:"首页/数据管理/管理员列表",
       }
     },
 	   methods: {
