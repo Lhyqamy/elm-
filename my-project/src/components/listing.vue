@@ -5,46 +5,28 @@
     :data="tableData"
     style="width: 100%">
     <el-table-column
+		  property="user_name"
       label="姓名"
       style="width: 10%">
-      <template slot-scope="scope">
-        <i class="el-icon-arrow-right"></i>
-        <span style="margin-left: 10px">{{}}</span>
-      </template>
+     
     </el-table-column>
     <el-table-column
+		  property="create_time"
       label="注册日期"
       style="width: 10%">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <div slot="reference" class="name-wrapper">
-        <p></p>
-          </div>
-        </el-popover>
-      </template>
-    </el-table-column> 
+    </el-table-column>
 	<el-table-column
+	   property="city"
       label="地址"
       style="width: 10%">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <div slot="reference" class="name-wrapper">
-        <p></p>
-          </div>
-        </el-popover>
-      </template>
+      
     </el-table-column>
 	
 	<el-table-column
+	    property="admin"
       label="权限"
       style="width: 10%">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <div slot="reference" class="name-wrapper">
-        <p></p>
-          </div>
-        </el-popover>
-      </template>
+     
     </el-table-column>
 	
    
@@ -64,13 +46,15 @@
 
 <script>
 	import Header from "./header"
+	import axios from "axios"
 	 export default {
       data() {
         return {
           tableData: [ 
 		  ],
 		  list:"",
-		    currentPage1: 5,
+		    currentPage1: 1,
+				num:0
         }
       },
 	  components:{
@@ -79,6 +63,13 @@
 	  created() {
 	  	  this.list=this.$route.params.headername
 	  },
+		mounted(){
+			axios.get(`https://elm.cangdu.org/admin/all?offset=${this.num}&limit=20`).then((res)=>{
+				  console.log(res.data.data)
+					this.tableData=res.data.data
+			})
+		},
+		
 	   methods: {
       handleEdit(index, row) {
         console.log(index, row);
@@ -91,6 +82,11 @@
 	  },
 	  handleCurrentChange(val) {
 	    console.log(`当前页: ${val}`);
+			this.num=val-1
+			axios.get(`https://elm.cangdu.org/admin/all?offset=${this.num*20}&limit=20`).then((res)=>{
+				  console.log(res.data.data)
+					this.tableData=res.data.data
+			})
 	  }
     }
     }
@@ -98,7 +94,7 @@
 
 <style>
 	#box1{
-		
+		background: white;
 		width: 100%;
 	     height: 100%;
 	}

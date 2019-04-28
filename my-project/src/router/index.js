@@ -8,6 +8,7 @@ import natureofcode from '@/components/natureofcode'
 import foods from '@/components/foods'
 import orderID from '@/components/orderID'
 import listing from '@/components/listing'
+import addfoods from '@/components/addfoods'
 
 Vue.use(Router)
 
@@ -25,7 +26,7 @@ export default new Router({
 			children:[
 				{
 					name:"paging",
-				  path:"/paging",
+				  path:"/",
 				  component:paging,
 				},	{
 					name:"users",
@@ -48,6 +49,10 @@ export default new Router({
 					name:"listing",
 				  path:"/listing",
 				  component:listing,
+				},{
+					name:"addfoods",
+				  path:"/addfoods",
+				  component:addfoods,
 				},
 				
 				]

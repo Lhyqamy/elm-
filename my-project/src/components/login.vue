@@ -1,5 +1,6 @@
 <template>
-	<div id="box">
+	<div id="box"  class="animated bounceInDown">
+		
 		<h1>
 			  elm后台管理系统
 		  </h1>
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+	import "../style/animate.css"
 	import axios from "axios"
 	export default{
 		 data() {
@@ -36,8 +38,20 @@
 			 axios.post("https://elm.cangdu.org/admin/login",data).then((res)=>{
 					  console.log(res.data)
 					  if(res.data.status==1){
-						   this.$router.push("/elm")
-					  }
+							setTimeout(()=>{
+								 this.$router.push("/elm")
+							},2000)
+        this.$notify({
+          title: '成功',
+          message: '登录成功',
+          type: 'success'
+        })
+					  }else{
+							this.$notify.error({
+          title: '密码错误',
+          message: '密码错误'
+        });
+						}
 					 
 				 })
 				
@@ -49,7 +63,7 @@
 	
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 	html,body,#box{
 		width: 100%;
 		height: 100%;

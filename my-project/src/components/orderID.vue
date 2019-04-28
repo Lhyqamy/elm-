@@ -5,34 +5,21 @@
     :data="tableData"
     style="width: 100%">
     <el-table-column
+		 property="id"
       label="订单ID"
       style="width: 33%">
-      <template slot-scope="scope">
-        <i class="el-icon-arrow-right"></i>
-        <span style="margin-left: 10px">{{}}</span>
-      </template>
     </el-table-column>
     <el-table-column
+		 property="total_amount"
       label="总价格"
       style="width: 33%">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <div slot="reference" class="name-wrapper">
-        <p></p>
-          </div>
-        </el-popover>
-      </template>
+     
     </el-table-column> 
 	<el-table-column
+	 property="status_bar.title"
       label="订单状态"
       style="width: 33%">
-      <template slot-scope="scope">
-        <el-popover trigger="hover" placement="top">
-          <div slot="reference" class="name-wrapper">
-        <p></p>
-          </div>
-        </el-popover>
-      </template>
+      
     </el-table-column>
 	
    
@@ -52,13 +39,14 @@
 
 <script>
 	import Header from "./header"
+	import axios from "axios"
 	 export default {
       data() {
         return {
-          tableData: [ 
-		  ],
-		  list:"",
-		    currentPage1: 5,
+          tableData: [],
+		    list:"",
+		    currentPage1: 1,
+				num:0
         }
       },
 	  components:{
@@ -67,6 +55,12 @@
 	  created() {
 	  	  this.list=this.$route.params.headername
 	  },
+		mounted(){
+			axios.get(`https://elm.cangdu.org/bos/orders?offset=${this.num}&limit=20&restaurant_id=undefined`).then((res)=>{
+				console.log(res.data)
+				this.tableData=res.data
+			})
+		},
 	   methods: {
       handleEdit(index, row) {
         console.log(index, row);
@@ -79,14 +73,19 @@
 	  },
 	  handleCurrentChange(val) {
 	    console.log(`当前页: ${val}`);
+			this.num=val-1
+			axios.get(`https://elm.cangdu.org/bos/orders?offset=${this.num*20}&limit=20&restaurant_id=undefined`).then((res)=>{
+				console.log(res.data)
+				this.tableData=res.data
+			})
 	  }
     }
     }
 </script>
 
-<style>
+<style >
 	#box1{
-		
+		 background: white;
 		width: 100%;
 	     height: 100%;
 	}
